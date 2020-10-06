@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <img alt="may the force be with you" class="logo-startwars" src="./assets/Star_Wars_logo.png"/>
+    <img
+      alt="may the force be with you"
+      class="logo-startwars"
+      src="./assets/Star_Wars_logo.png"
+    />
     <Loader v-if="isLoadingData" />
     <div v-if="!isLoadingData && !hasError" class="container-personagens">
       <div v-for="p in personagens" v-bind:key="p.nome">
@@ -14,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
-import Personagem from './components/Personagem.vue';
-import Loader from './components/Loader.vue';
-import ErrorMessage from './components/ErrorMessage.vue';
-import StartwarsService from './services/startwars.service';
+import { Component, Vue } from "vue-property-decorator";
+import Personagem from "./components/Personagem.vue";
+import Loader from "./components/Loader.vue";
+import ErrorMessage from "./components/ErrorMessage.vue";
+import StartwarsService from "./services/startwars.service";
 
 @Component({
   components: {
@@ -36,7 +40,7 @@ export default class App extends Vue {
     const result = await StartwarsService.getStarWarsCharacters();
 
     if (!!result && !!result.data && result.data.results.length > 0) {
-      this.personagens = result.data.results.map(function (r) {
+      this.personagens = result.data.results.map(function(r) {
         return {
           nome: r.name,
           olhos: r.eye_color,

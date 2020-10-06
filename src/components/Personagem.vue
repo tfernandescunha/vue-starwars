@@ -4,11 +4,11 @@
       <h4>Personagem</h4>
     </div>
     <div class="dados-personagem">
-      <span>Nome: {{ personagem.nome }}</span>
+      <span v-bind:style="{ color: corOlhosPersonagem }">Nome: {{ personagem.nome }}</span>
       <span>Olhos: {{ personagem.olhos }}</span>
       <span>Peso: {{ personagem.peso }}</span>
       <span>Altura: {{ personagem.altura }}</span>
-      <span>Sexo: {{ personagem.sexo === 'male' ? 'Masculino' : 'Feminino' }}</span>
+      <span>Sexo: {{ parseSexoPersonagem }}</span>
     </div>
   </div>
 </template>
@@ -16,9 +16,19 @@
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
 
-@Component({name: 'Personagem'})
+@Component({
+  name: "Personagem"
+})
 export default class Personagem extends Vue {
   @Prop() personagem!: PersonagemModel;
+
+  get corOlhosPersonagem() {
+    return this.personagem.olhos;
+  }
+
+  get parseSexoPersonagem() {
+    return  this.personagem.sexo === 'male' ? 'Masculino' : 'Feminino';
+  }
 }
 </script>
 
